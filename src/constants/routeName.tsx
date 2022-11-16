@@ -1,3 +1,3 @@
 export const LOGOUT = 'LogOut';
-export const NEWS = 'News';
-export const LOGIN = 'Login';
+export const NEWS = 'Wiadomości';
+export const LOGIN = 'Zaloguj się';

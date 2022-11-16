@@ -11,7 +11,11 @@ const Stack = createNativeStackNavigator();
 const NavContainer = () => {
   const dispatch = useAppDispatch();
   const isLoggedIn = useAppSelector((state) => state.userLogin.isLoggedIn);
-
+  useEffect(() => {
+    if (isLoggedIn) {
+      dispatch(getData());
+    }
+  }, [isLoggedIn])
   return (
     <NavigationContainer>
       <Stack.Navigator>

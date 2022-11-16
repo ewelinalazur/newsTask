@@ -1,47 +1,34 @@
-import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import Button from '../components/Buttom';
 import Input from '../components/Input';
 import styled from '@emotion/native';
-import {NavigationInterface, LoginComponentsProps} from './types';
+import { LoginComponentsProps} from './types';
 
 
 const StyledHeaderWrapper = styled.View`
 	display: flex;
 	justify-content: flex-start;
-	margin-bottom: 10px;
+	margin: 20px 10px;
 `;
 const StyledHeader = styled.Text`
-	font-size: 26px;
+	font-size: 32px;
 	line-height: 39px;
-	color: #fff;
+	color: #232f5f;
+  font-weight: 600;
 `;
-const StyledDesc = styled.Text`
-	color: #fff;
-	font-size: 12px;
-	line-height: 17px;
-	max-width: 70%;
-	text-align: left;
-`;
-
 const ContentWrapper = styled.View`
 	flex: 1;
 	padding: 0 25px;
 `;
 
-const LoginClient = ({error, form, onChange, loading, onSubmit}: LoginComponentsProps) => {
-  const {navigate} = useNavigation<NavigationInterface>();
+const LoginClient = ({error, form, onChange, onSubmit}: LoginComponentsProps) => {
 
   return (
-    <>
-{/*
-     // <KeyboardAwareScrollView enableOnAndroid={true} extraScrollHeight={60} keyboardOpeningTime={100}>
-*/}
+
         <ContentWrapper>
 
           <StyledHeaderWrapper>
-            <StyledHeader>Zaloguj się</StyledHeader>
-            <StyledDesc>Po pierwszym zalogowaniu ...</StyledDesc>
+            <StyledHeader>Witaj!</StyledHeader>
           </StyledHeaderWrapper>
 
           <Input
@@ -58,14 +45,15 @@ const LoginClient = ({error, form, onChange, loading, onSubmit}: LoginComponents
               onChange({name: 'password', value});
             }}
             label="Password"
+            secureTextEntry
             placeholder="Hasło"
             error={error}
           />
 
-          <Button title="Kontynuuj" onPress={onSubmit} loading={loading} />
+          <Button title="Kontynuuj" onPress={onSubmit}  />
         </ContentWrapper>
 
-    </>
+
   );
 };
 

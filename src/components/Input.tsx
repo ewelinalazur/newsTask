@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {InputItems, StyledInputProps, StyledTextInputProps} from './types';
 import styled from '@emotion/native';
 
@@ -40,26 +40,17 @@ const Input = ({
                  error,
                  placeholder,
                  secureTextEntry,
-                 keyboardType,
-                 disabled,
                  ...props
                }: InputItems) => {
-  const [focused, setFocused] = useState(false);
 
   return (
     <StyledInputContainer
-      error={error}
-      focused={focused}>
+      error={error}>
       <StyledTextInput
-        selectTextOnFocus={!disabled}
         onChangeText={onChangeText}
         value={value}
         placeholder={placeholder}
-        onFocus={() => {
-          setFocused(true);
-        }}
         secureTextEntry={secureTextEntry}
-        keyboardType={keyboardType}
         error={error}
         autoCapitalize={'none'}
         {...props}

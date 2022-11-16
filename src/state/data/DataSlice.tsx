@@ -75,12 +75,12 @@ export const newsDataSlice = createSlice({
       state.isFetchingData = false;
       const newArray: any[] = [];
       Object.keys(action.payload).forEach((item) => {
-        action.payload[item].forEach((item) => {
+        action.payload[item].forEach((item: ObjectNews) => {
           const newItem = {
             id: item.id,
             title: item.title,
             content: item.content,
-            comments: item.comments.map((comment) => {
+            comments: item.comments.map((comment: ArrayComment) => {
              return ({
                 id: comment.id,
                 content: comment.content,
