@@ -10,7 +10,7 @@ import {useNavigation} from "@react-navigation/native";
 import {NavigationInterface} from "../components/types";
 
 const LoginScreen = () => {
-  const [form, setForm] = useState({username: '', password: ''});
+  const [form, setForm] = useState({username: 'rekrutacja@emplo.com', password: 'sde4355tygswJ5t%eDX'});
   const dispatch = useAppDispatch();
   const {navigate} = useNavigation<NavigationInterface>();
 
@@ -28,7 +28,6 @@ const LoginScreen = () => {
         password: form.password,
       };
       dispatch(loginUser(userData));
-      navigate(NEWS)
     }
   };
 
