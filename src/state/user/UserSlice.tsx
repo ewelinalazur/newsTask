@@ -30,7 +30,6 @@ export const loginUser = createAsyncThunk('/Auth', async ({username, password}: 
     })
     .then((res) => {
       AsyncStorage.setItem('token', res.data.token);
-      console.log(res);
     });
 });
 
@@ -58,6 +57,7 @@ export const userLoginSlice = createSlice({
     });
   },
 });
+export const {setSignedOutStatus} = userLoginSlice.actions;
 
 export default userLoginSlice.reducer;
 

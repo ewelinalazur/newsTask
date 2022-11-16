@@ -1,12 +1,12 @@
 import {userLoginSlice} from './user/UserSlice';
 import {useDispatch} from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit'
-import {dataSlice} from "./data/DataSlice";
+import {newsDataSlice} from "./data/DataSlice";
 
 const store = configureStore({
   reducer: {
     userLogin: userLoginSlice.reducer,
-    getData: dataSlice.reducer,
+    getData: newsDataSlice.reducer,
   },
 })
 

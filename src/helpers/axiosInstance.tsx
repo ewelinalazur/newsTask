@@ -1,11 +1,12 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 
+
 let headers = {
   'Content-Type': 'application/json'
 }
 const axiosInstance = axios.create({
-  baseURL: 'https://afreactrecrutation.azurewebsites.net',
+  baseURL: 'https://afreactrecrutation.azurewebsites.net/api',
   headers,
 });
 
@@ -14,7 +15,7 @@ axiosInstance.interceptors.request.use(
     const token = await AsyncStorage.getItem('token');
     if (token) {
     	//if I already have a token
-    	config.headers.common = `Bearer ${token}`;
+    	config.headers.Authorization = `Bearer ${token}`;
     }
     return config;
   },
@@ -36,6 +37,7 @@ axiosInstance.interceptors.response.use(
     }
 
     if (error.response.status === 403) {
+
 
     } else {
       return new Promise((resolve, reject) => {
