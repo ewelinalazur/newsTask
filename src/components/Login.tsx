@@ -1,7 +1,7 @@
 import styled from '@emotion/native';
 import React from 'react';
 
-import Button from '../components/Buttom';
+import Button from './Button';
 import Input from '../components/Input';
 import { LoginComponentsProps } from './types';
 
@@ -19,6 +19,7 @@ const StyledHeader = styled.Text`
 const ContentWrapper = styled.View`
   flex: 1;
   padding: 0 25px;
+  background-color: #fff;
 `;
 
 const LoginClient = ({ error, form, onChange, onSubmit }: LoginComponentsProps) => {

@@ -9,8 +9,8 @@ import { loginUser } from '../state/user/UserSlice';
 
 const LoginScreen = () => {
   const [form, setForm] = useState({
-    username: 'rekrutacja@emplo.com',
-    password: 'sde4355tygswJ5t%eDX',
+    username: '',
+    password: '',
   });
   const dispatch = useAppDispatch();
 

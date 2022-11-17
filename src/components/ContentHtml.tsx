@@ -2,7 +2,10 @@ import React from 'react';
 import { useWindowDimensions } from 'react-native';
 import RenderHTML from 'react-native-render-html';
 
-const ContentHtml = React.memo(function ContentHtml({ content }) {
+interface ContentHtmlProps {
+  content: string;
+}
+const ContentHtml = React.memo(function ContentHtml({ content }: ContentHtmlProps) {
   const { width } = useWindowDimensions();
   const tagsStyles = {
     body: {
