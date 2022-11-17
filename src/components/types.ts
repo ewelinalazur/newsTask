@@ -9,9 +9,7 @@ export interface LoginComponentsProps {
   onSubmit: () => void;
 }
 export type ButtonItems = {
-  title?: string;
-  disabled?: boolean;
-  loading?: boolean;
+  title: string;
   onPress?: () => void;
 };
 export type InputItems = {
@@ -20,7 +18,7 @@ export type InputItems = {
   placeholder?: string;
   label?: string;
   error?: boolean;
-  disabled?: boolean;
+  secureTextEntry?: boolean;
 };
 export type StyledInputProps = {
   type?: string;
@@ -30,11 +28,6 @@ export type StyledInputProps = {
 export type StyledTextInputProps = {
   error?: boolean;
 };
-
-export type StyledButtonProps = {
-  small?: boolean;
-};
-
 export type SpinnerProps = {
   screenWidth: number;
   screenHeight: number;

@@ -1,71 +1,55 @@
-import {useNavigation} from '@react-navigation/native';
-import React from 'react';
-import Button from '../components/Buttom';
-import Input from '../components/Input';
 import styled from '@emotion/native';
-import {NavigationInterface, LoginComponentsProps} from './types';
+import React from 'react';
 
+import Button from './Button';
+import Input from '../components/Input';
+import { LoginComponentsProps } from './types';
 
 const StyledHeaderWrapper = styled.View`
-	display: flex;
-	justify-content: flex-start;
-	margin-bottom: 10px;
+  display: flex;
+  justify-content: flex-start;
+  margin: 20px 10px;
 `;
 const StyledHeader = styled.Text`
-	font-size: 26px;
-	line-height: 39px;
-	color: #fff;
+  font-size: 32px;
+  line-height: 39px;
+  color: #232f5f;
+  font-weight: 600;
 `;
-const StyledDesc = styled.Text`
-	color: #fff;
-	font-size: 12px;
-	line-height: 17px;
-	max-width: 70%;
-	text-align: left;
-`;
-
 const ContentWrapper = styled.View`
-	flex: 1;
-	padding: 0 25px;
+  flex: 1;
+  padding: 0 25px;
+  background-color: #fff;
 `;
 
-const LoginClient = ({error, form, onChange, loading, onSubmit}: LoginComponentsProps) => {
-  const {navigate} = useNavigation<NavigationInterface>();
-
+const LoginClient = ({ error, form, onChange, onSubmit }: LoginComponentsProps) => {
   return (
-    <>
-{/*
-     // <KeyboardAwareScrollView enableOnAndroid={true} extraScrollHeight={60} keyboardOpeningTime={100}>
-*/}
-        <ContentWrapper>
+    <ContentWrapper>
+      <StyledHeaderWrapper>
+        <StyledHeader>Witaj!</StyledHeader>
+      </StyledHeaderWrapper>
 
-          <StyledHeaderWrapper>
-            <StyledHeader>Zaloguj się</StyledHeader>
-            <StyledDesc>Po pierwszym zalogowaniu ...</StyledDesc>
-          </StyledHeaderWrapper>
+      <Input
+        onChangeText={(value: string) => {
+          onChange({ name: 'username', value });
+        }}
+        value={form.username || ''}
+        label="Username"
+        placeholder="username"
+        error={error}
+      />
+      <Input
+        onChangeText={(value: string) => {
+          onChange({ name: 'password', value });
+        }}
+        label="Password"
+        secureTextEntry
+        placeholder="Hasło"
+        error={error}
+      />
 
-          <Input
-            onChangeText={(value: string) => {
-              onChange({name: 'username', value});
-            }}
-            value={form.username || ''}
-            label="Username"
-            placeholder="username"
-            error={error}
-          />
-          <Input
-            onChangeText={(value: string) => {
-              onChange({name: 'password', value});
-            }}
-            label="Password"
-            placeholder="Hasło"
-            error={error}
-          />
-
-          <Button title="Kontynuuj" onPress={onSubmit} loading={loading} />
-        </ContentWrapper>
-
-    </>
+      <Button title="Kontynuuj" onPress={onSubmit} />
+    </ContentWrapper>
   );
 };
 
