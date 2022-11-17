@@ -1,7 +1,6 @@
 import styled from '@emotion/native';
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
-
 import { ButtonItems } from './types';
 
 const StyledView = styled.View`
@@ -10,6 +9,7 @@ const StyledView = styled.View`
   background-color: #232f5f;
   border-radius: 10px;
   display: flex;
+  margin-top: 18px;
   flex-direction: row;
   justify-content: center;
   align-items: center;

@@ -1,17 +1,13 @@
 import styled from '@emotion/native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Icon } from '@rneui/themed';
 import React, { useState } from 'react';
 import { Text, Platform, View } from 'react-native';
-
-import Button from '../components/Buttom';
 import Comments from '../components/Comments';
 import ContentHtml from '../components/ContentHtml';
 import CustomSpinner from '../components/CustomSpinner';
-import { useAppDispatch, useAppSelector } from '../state/hooks';
-import { setSignedOutStatus } from '../state/user/UserSlice';
+import { useAppSelector } from '../state/hooks';
 
-const StyledLockerInfoFrameWrapper = styled.TouchableOpacity`
+const StyledLockerInfoFrameWrapper = styled.View`
   width: 100%;
   border-style: solid;
   border-bottom-width: 2px;
@@ -101,7 +97,6 @@ const StyledDate = styled.Text`
 `;
 
 const News = () => {
-  const dispatch = useAppDispatch();
   const isFetchingData = useAppSelector((state) => state.getData.isFetchingData);
   const newsData = useAppSelector((state) => state.getData.data);
   const [modalVisible, setModalVisible] = useState(false);
@@ -111,55 +106,45 @@ const News = () => {
       setModalVisible(!modalVisible);
     }
   };
-  const handleLogout = async () => {
-    await AsyncStorage.clear().then(() => {
-      dispatch(setSignedOutStatus(false));
-    });
-  };
 
-  const ItemView = ({ item, index }) => {
+  const ItemView = ({ item }) => {
     const date = new Date(item.createDate).getDate();
     const month = new Date(item.createDate).getMonth() + 1;
     const year = new Date(item.createDate).getFullYear();
 
     return (
-      <>
-        <StyledLockerInfoFrameWrapper
-          key={item.id}
-          onPress={() => toggleModal(item.comments.length)}>
-          <StyledLockerContentWrapper>
-            <StyledLockerInfoWrapper>
-              <StyledHeader>
-                <StyledLockerName>{item.title}</StyledLockerName>
-                <StyledIcon>
-                  <StyledNumberLikes>{item.numberOfLikes}</StyledNumberLikes>
-                  <Icon name="heart-circle" type="ionicon" color="#232f5f" />
-                </StyledIcon>
-              </StyledHeader>
-              <StyledAuthorWrapper>
-                <Text>autor: {item.author.fullName}</Text>
-              </StyledAuthorWrapper>
-              <ContentHtml content={item.content} />
-              <StyledDate>opublikowano: {date + '/' + month + '/' + year}</StyledDate>
-            </StyledLockerInfoWrapper>
-          </StyledLockerContentWrapper>
-          <CommentBar onPress={() => toggleModal(item.comments.length)}>
-            <View>
-              <Icon name="chatbubbles" type="ionicon" color="#232f5f" />
-            </View>
-            <CommentText>
-              {item.comments.length}{' '}
-              {item.comments.length > 1
-                ? 'komentarze'
-                : item.comments.length < 1
-                ? 'komenatrzy'
-                : 'komentarz'}{' '}
-            </CommentText>
-          </CommentBar>
-          {modalVisible && <Comments comments={item.comments} />}
-        </StyledLockerInfoFrameWrapper>
-        {newsData.length - 1 === index && <Button onPress={handleLogout} title="Wyloguj" />}
-      </>
+      <StyledLockerInfoFrameWrapper key={item.id}>
+        <StyledLockerContentWrapper>
+          <StyledLockerInfoWrapper>
+            <StyledHeader>
+              <StyledLockerName>{item.title}</StyledLockerName>
+              <StyledIcon>
+                <StyledNumberLikes>{item.numberOfLikes}</StyledNumberLikes>
+                <Icon name="heart-circle" type="ionicon" color="#232f5f" />
+              </StyledIcon>
+            </StyledHeader>
+            <StyledAuthorWrapper>
+              <Text>autor: {item.author.fullName}</Text>
+            </StyledAuthorWrapper>
+            <ContentHtml content={item.content} />
+            <StyledDate>opublikowano: {date + '/' + month + '/' + year}</StyledDate>
+          </StyledLockerInfoWrapper>
+        </StyledLockerContentWrapper>
+        <CommentBar onPress={() => toggleModal(item.comments.length)}>
+          <View>
+            <Icon name="chatbubbles" type="ionicon" color="#232f5f" />
+          </View>
+          <CommentText>
+            {item.comments.length}{' '}
+            {item.comments.length > 1
+              ? 'komentarze'
+              : item.comments.length < 1
+              ? 'komenatrzy'
+              : 'komentarz'}{' '}
+          </CommentText>
+        </CommentBar>
+        {modalVisible && <Comments comments={item.comments} />}
+      </StyledLockerInfoFrameWrapper>
     );
   };
 
