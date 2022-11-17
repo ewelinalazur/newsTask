@@ -1,9 +1,6 @@
-export interface NavigationInterface {
-  navigate: (value: string) => void;
-}
 export interface LoginComponentsProps {
   error: any;
-  form: {username: string; password: string};
+  form: { username: string; password: string };
   onChange: any;
   loading: boolean;
   onSubmit: () => void;

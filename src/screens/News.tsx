@@ -6,6 +6,7 @@ import Comments from '../components/Comments';
 import ContentHtml from '../components/ContentHtml';
 import CustomSpinner from '../components/CustomSpinner';
 import { useAppSelector } from '../state/hooks';
+import { ObjectNews } from '../state/data/DataSlice';
 
 const StyledLockerInfoFrameWrapper = styled.View`
   width: 100%;
@@ -21,12 +22,13 @@ const StyledLockerInfoFrameWrapper = styled.View`
 
 const StyledFlatlist = styled.FlatList`
   width: 100%;
+  height: auto;
   padding: 20px;
 `;
 
 const StyledContainer = styled.View`
-  //flex: 1;
   width: 100%;
+  background-color: #fff;
 `;
 const StyledHeader = styled.View`
   flex-direction: row;
@@ -107,7 +109,7 @@ const News = () => {
     }
   };
 
-  const ItemView = ({ item }) => {
+  const ItemView = ({ item }: ObjectNews) => {
     const date = new Date(item.createDate).getDate();
     const month = new Date(item.createDate).getMonth() + 1;
     const year = new Date(item.createDate).getFullYear();
@@ -155,6 +157,7 @@ const News = () => {
       ) : (
         <StyledFlatlist
           data={newsData}
+          contentContainerStyle={{ paddingBottom: 40 }}
           keyExtractor={(item, index) => index.toString()}
           renderItem={ItemView}
         />
