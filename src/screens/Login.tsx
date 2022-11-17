@@ -1,21 +1,24 @@
-import React, {useState} from 'react';
-import Login from '../components/Login';
-import {loginUser} from '../state/user/UserSlice';
-import CustomSpinner from '../components/CustomSpinner';
-import {useAppDispatch, useAppSelector} from '../state/hooks';
-import {RootState} from '../state/store';
-import {Platform} from 'react-native';
+import React, { useState } from 'react';
+import { Platform } from 'react-native';
 
+import CustomSpinner from '../components/CustomSpinner';
+import Login from '../components/Login';
+import { useAppDispatch, useAppSelector } from '../state/hooks';
+import { RootState } from '../state/store';
+import { loginUser } from '../state/user/UserSlice';
 
 const LoginScreen = () => {
-  const [form, setForm] = useState({username: '', password:''});
+  const [form, setForm] = useState({
+    username: 'rekrutacja@emplo.com',
+    password: 'sde4355tygswJ5t%eDX',
+  });
   const dispatch = useAppDispatch();
 
   const loading = useAppSelector((state: RootState) => state.userLogin.loading);
   const error = useAppSelector((state: RootState) => state.userLogin.error);
 
-  const onChange = ({name, value}: any) => {
-    setForm({...form, [name]: value});
+  const onChange = ({ name, value }: any) => {
+    setForm({ ...form, [name]: value });
   };
 
   const onSubmit = () => {
@@ -31,7 +34,13 @@ const LoginScreen = () => {
   return (
     <>
       {loading && Platform.OS !== 'ios' && <CustomSpinner />}
-      <Login onSubmit={() => onSubmit()} onChange={onChange} form={form} error={error} loading={loading} />
+      <Login
+        onSubmit={() => onSubmit()}
+        onChange={onChange}
+        form={form}
+        error={error}
+        loading={loading}
+      />
     </>
   );
 };
