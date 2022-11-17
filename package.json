@@ -9,6 +9,9 @@
     "web": "expo start --web",
     "eject": "expo eject"
   },
+  "eslintConfig": {
+    "extends": "universe/native"
+  },
   "dependencies": {
     "@emotion/native": "^11.10.0",
     "@emotion/react": "^11.10.5",
@@ -36,6 +39,11 @@
     "@babel/core": "^7.12.9",
     "@types/react": "~17.0.21",
     "@types/react-native": "~0.64.12",
+    "@typescript-eslint/eslint-plugin": "^5.43.0",
+    "@typescript-eslint/parser": "^5.43.0",
+    "eslint": "^8.27.0",
+    "eslint-config-universe": "^11.1.1",
+    "prettier": "^2.7.1",
     "typescript": "~4.3.5"
   },
   "resolutions": {

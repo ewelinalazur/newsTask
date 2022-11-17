@@ -1,9 +1,9 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 
-let headers = {
-  'Content-Type': 'application/json'
-}
+const headers = {
+  'Content-Type': 'application/json',
+};
 const axiosInstance = axios.create({
   baseURL: 'https://afreactrecrutation.azurewebsites.net/api',
   headers,
@@ -13,13 +13,13 @@ axiosInstance.interceptors.request.use(
   async (config) => {
     const token = await AsyncStorage.getItem('token');
     if (token) {
-    	config.headers.Authorization = `Bearer ${token}`;
+      config.headers.Authorization = `Bearer ${token}`;
     }
     return config;
   },
   (error) => {
     return Promise.reject(error);
-  },
+  }
 );
 
 axiosInstance.interceptors.response.use(
@@ -35,14 +35,12 @@ axiosInstance.interceptors.response.use(
     }
 
     if (error.response.status === 403) {
-
-
     } else {
       return new Promise((resolve, reject) => {
         reject(error);
       });
     }
-  },
+  }
 );
 
 export default axiosInstance;
