@@ -1,6 +1,5 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import axiosInstance from '../../helpers/axiosInstance';
 
 export interface UserState {
@@ -28,8 +27,8 @@ export const loginUser = createAsyncThunk(
   async ({ username, password }: { username: string; password: string }) => {
     await axiosInstance
       .post('/Auth', {
-        username,
-        password,
+        username: username,
+        password: password,
       })
       .then((res) => {
         AsyncStorage.setItem('token', res.data.token);
@@ -39,7 +38,7 @@ export const loginUser = createAsyncThunk(
 
 export const userLoginSlice = createSlice({
   name: 'userLogin',
-  initialState,
+  initialState: initialState,
   reducers: {
     setSignedOutStatus: (state, action) => {
       state.isLoggedIn = action.payload;

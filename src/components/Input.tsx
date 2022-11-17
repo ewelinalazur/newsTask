@@ -37,7 +37,6 @@ const StyledErrorText = styled.Text`
 const Input = ({
   onChangeText,
   value,
-  label,
   error,
   placeholder,
   secureTextEntry,
